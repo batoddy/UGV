@@ -1,0 +1,41 @@
+name: python-lint
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  lint:
+    name: flake8 + pylint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install linters
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 pylint
+
+      - name: Run flake8 (syntax/style check)
+        run: |
+          PYFILES=$(git ls-files '*.py')
+          if [ -n "$PYFILES" ]; then
+            flake8 $PYFILES
+          else
+            echo "No Python files found."
+          fi
+
+      - name: Run pylint (static analysis)
+        run: |
+          PYFILES=$(git ls-files '*.py')
+          if [ -n "$PYFILES" ]; then
+            pylint $PYFILES
+          else
+            echo "No Python files found."
+          fi
