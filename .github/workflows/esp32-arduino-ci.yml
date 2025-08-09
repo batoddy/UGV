@@ -27,7 +27,14 @@ jobs:
           arduino-cli core install esp32:esp32
 
       - name: Compile
-        run: arduino-cli compile --fqbn "$FQBN" "$SKETCH" --output-dir build
+        run: |
+          arduino-cli compile \
+            --fqbn "$FQBN" "$SKETCH" \
+            --warnings all \
+            --build-properties compiler.c.extra_flags="-Wall -Wextra -Werror" \
+            --build-properties compiler.cpp.extra_flags="-Wall -Wextra -Werror" \
+            --output-dir build
+        
 
       - name: Upload firmware artifacts
         uses: actions/upload-artifact@v4
