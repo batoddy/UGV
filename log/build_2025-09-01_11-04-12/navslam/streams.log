@@ -1,0 +1,53 @@
+[0.815s] Invoking command in '/home/batoddy/orn_ws/src/navslam': PYTHONPATH=/home/batoddy/orn_ws/build/navslam/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/batoddy/orn_ws/install/navslam/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/navslam build --build-base /home/batoddy/orn_ws/build/navslam/build install --record /home/batoddy/orn_ws/build/navslam/install.log --single-version-externally-managed install_data
+[1.144s] running egg_info
+[1.144s] creating ../../build/navslam/navslam.egg-info
+[1.144s] writing ../../build/navslam/navslam.egg-info/PKG-INFO
+[1.145s] writing dependency_links to ../../build/navslam/navslam.egg-info/dependency_links.txt
+[1.145s] writing entry points to ../../build/navslam/navslam.egg-info/entry_points.txt
+[1.145s] writing requirements to ../../build/navslam/navslam.egg-info/requires.txt
+[1.145s] writing top-level names to ../../build/navslam/navslam.egg-info/top_level.txt
+[1.145s] writing manifest file '../../build/navslam/navslam.egg-info/SOURCES.txt'
+[1.148s] reading manifest file '../../build/navslam/navslam.egg-info/SOURCES.txt'
+[1.148s] writing manifest file '../../build/navslam/navslam.egg-info/SOURCES.txt'
+[1.149s] running build
+[1.149s] running build_py
+[1.149s] creating /home/batoddy/orn_ws/build/navslam/build
+[1.153s] creating /home/batoddy/orn_ws/build/navslam/build/lib
+[1.153s] creating /home/batoddy/orn_ws/build/navslam/build/lib/navslam
+[1.153s] copying navslam/__init__.py -> /home/batoddy/orn_ws/build/navslam/build/lib/navslam
+[1.153s] copying navslam/encoder_esp32_bridge.py -> /home/batoddy/orn_ws/build/navslam/build/lib/navslam
+[1.153s] running install
+[1.154s] running install_lib
+[1.154s] creating /home/batoddy/orn_ws/install/navslam/lib/python3.10/site-packages/navslam
+[1.154s] copying /home/batoddy/orn_ws/build/navslam/build/lib/navslam/__init__.py -> /home/batoddy/orn_ws/install/navslam/lib/python3.10/site-packages/navslam
+[1.154s] copying /home/batoddy/orn_ws/build/navslam/build/lib/navslam/encoder_esp32_bridge.py -> /home/batoddy/orn_ws/install/navslam/lib/python3.10/site-packages/navslam
+[1.154s] byte-compiling /home/batoddy/orn_ws/install/navslam/lib/python3.10/site-packages/navslam/__init__.py to __init__.cpython-310.pyc
+[1.154s] byte-compiling /home/batoddy/orn_ws/install/navslam/lib/python3.10/site-packages/navslam/encoder_esp32_bridge.py to encoder_esp32_bridge.cpython-310.pyc
+[1.156s] running install_data
+[1.156s] creating /home/batoddy/orn_ws/install/navslam/share/ament_index
+[1.156s] creating /home/batoddy/orn_ws/install/navslam/share/ament_index/resource_index
+[1.156s] creating /home/batoddy/orn_ws/install/navslam/share/ament_index/resource_index/packages
+[1.156s] copying resource/navslam -> /home/batoddy/orn_ws/install/navslam/share/ament_index/resource_index/packages
+[1.156s] copying package.xml -> /home/batoddy/orn_ws/install/navslam/share/navslam
+[1.156s] creating /home/batoddy/orn_ws/install/navslam/share/navslam/launch
+[1.156s] copying launch/bring_up.launch.py -> /home/batoddy/orn_ws/install/navslam/share/navslam/launch
+[1.157s] copying launch/ekf_fusion.launch.py -> /home/batoddy/orn_ws/install/navslam/share/navslam/launch
+[1.157s] copying launch/rgbd_odom.launch.py -> /home/batoddy/orn_ws/install/navslam/share/navslam/launch
+[1.157s] copying launch/rtabmap_slam.launch.py -> /home/batoddy/orn_ws/install/navslam/share/navslam/launch
+[1.157s] copying launch/d456_launch.launch.py -> /home/batoddy/orn_ws/install/navslam/share/navslam/launch
+[1.157s] copying launch/nav2_navigation.launch.py -> /home/batoddy/orn_ws/install/navslam/share/navslam/launch
+[1.157s] copying launch/encoder_odom_bridge.launch.py -> /home/batoddy/orn_ws/install/navslam/share/navslam/launch
+[1.157s] creating /home/batoddy/orn_ws/install/navslam/share/navslam/config
+[1.157s] copying config/zed2i_config/zed2i_override_params.yaml -> /home/batoddy/orn_ws/install/navslam/share/navslam/config
+[1.157s] copying config/zed2i_config/zed2i_params.yaml -> /home/batoddy/orn_ws/install/navslam/share/navslam/config
+[1.158s] copying config/camera_remaps.yaml -> /home/batoddy/orn_ws/install/navslam/share/navslam/config
+[1.158s] copying config/ekf.yaml -> /home/batoddy/orn_ws/install/navslam/share/navslam/config
+[1.158s] copying config/rtabmap_slam.yaml -> /home/batoddy/orn_ws/install/navslam/share/navslam/config
+[1.158s] copying config/d456_params.yaml -> /home/batoddy/orn_ws/install/navslam/share/navslam/config
+[1.158s] copying config/nav2_params.yaml -> /home/batoddy/orn_ws/install/navslam/share/navslam/config
+[1.158s] running install_egg_info
+[1.161s] Copying ../../build/navslam/navslam.egg-info to /home/batoddy/orn_ws/install/navslam/lib/python3.10/site-packages/navslam-0.0.1-py3.10.egg-info
+[1.162s] running install_scripts
+[1.190s] Installing encoder_odom_bridge script to /home/batoddy/orn_ws/install/navslam/lib/navslam
+[1.191s] writing list of installed files to '/home/batoddy/orn_ws/build/navslam/install.log'
+[1.223s] Invoked command in '/home/batoddy/orn_ws/src/navslam' returned '0': PYTHONPATH=/home/batoddy/orn_ws/build/navslam/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/batoddy/orn_ws/install/navslam/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/navslam build --build-base /home/batoddy/orn_ws/build/navslam/build install --record /home/batoddy/orn_ws/build/navslam/install.log --single-version-externally-managed install_data

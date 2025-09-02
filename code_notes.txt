@@ -1,0 +1,149 @@
+d456 camera open:
+
+ros2 launch realsense2_camera rs_launch.py     align_depth.enable:=true     pointcloud.enable:=true     rgb_camera.profile:="1280x720x60"     depth_module.profile:="1280x720x60"   enable_gyro:=true     enable_accel:=true     unite_imu_method:=2
+
+ros2 launch rtabmap_launch rtabmap.launch.py    rgb_topic:=/camera/camera/color/image_raw    depth_topic:=/camera/camera/depth/image_rect_raw    camera_info_topic:=/camera/camera/color/camera_info  frame_id:=base_link    odom_frame_id:=odom    approx_sync:=true
+
+
+
+rtabmap open: 
+
+ros2 launch rtabmap_launch rtabmap.launch.py   rgb_topic:=/camera/camera/color/image_raw   depth_topic:=/camera/camera/aligned_depth_to_color/image_raw   camera_info_topic:=/camera/camera/color/camera_info   approx_sync:=true   frame_id:=camera_camera_link   visual_odometry:=true   qos_image:=2 qos_camera_info:=2   rviz:=true imu_topic:=camera/camera/imu imu_frame:=camera_imu_frame
+
+map save:
+
+mkdir -p ~/maps
+
+ros2 run nav2_map_server map_saver_cli -f ~/maps/site1 \
+  --ros-args -r map:=/rtabmap/map \
+  -p map_subscribe_transient_local:=true \
+  -p occupied_thresh:=0.65 -p free_thresh:=0.25
+
+mevcut harita görüntüleme
+
+rtabmap-databaseViewer ~/.ros/rtabmap.db
+
+kayıtlı haritada lokalizasyon
+
+
+
+zed 2i: 
+
+ros2 launch zed_wrapper zed_camera.launch.py camera_model:=zed2i   param_file:=$HOME/ros2_ws/src/zed-ros2-wrapper/zed_wrapper/config/zed2i.yaml   custom_param_file:=$HOME/config/zed2i_rgbd.yaml
+
+rtabmap open - zed: 
+
+ros2 launch rtabmap_launch rtabmap.launch.py   rtabmap_args:="--delete_db_on_start"   rgb_topic:=/zed/zed_node/rgb/image_rect_color   depth_topic:=/zed/zed_node/depth/depth_registered   camera_info_topic:=/zed/zed_node/rgb/camera_isnfo   frame_id:=zed_camera_link   visual_odometry:=true   approx_sync:=true   queue_size:=30   qos_image:=1 qos_camera_info:=1 imu_topic:=/zed/zed_node/imu/data   imu_frame:=imu_link   rviz:=true
+
+
+-------------------------------------------------------------------
+
+zed camera ile ilgili topic parametre bilgileri: 
+ros2 param dump /zed/zed_node | less
+
+map kayıt:
+
+ros2 run nav2_map_server map_saver_cli -f ~/maps/ugv_map \
+  --ros-args -r map:=/octomap_grid
+  
+  
+ database olarak map kaydetme
+  cp ~/.ros/rtabmap.db ~/maps/lab.db
+
+
+
+ros web bridge:
+ros2 launch rosbridge_server rosbridge_websocket_launch.xml
+
+
+video web server ros:
+ros2 run web_video_server web_video_server \
+  --ros-args -p address:=0.0.0.0 -p port:=8080 -p server_threads:=4
+
+
+
+map kayıt:
+db:
+cp -f ~/.ros/rtabmap.db ~/maps/session_copy.db
+
+TS=$(date +%F_%H-%M-%S)  		??
+cp -f "$DB" ~/maps/rtabmap_$TS.db	??
+
+yaml:
+ros2 run nav2_map_server map_saver_cli -f ~/maps/run1 --ros-args -r map:=/octomap_grid 
+
+mevcut harita görüntüleme:
+rtabmap-databaseViewer ~/maps/run2/session_2.db 
+
+
+localizasyon:
+
+ros2 launch ugv_zed2i_bringup ugv_map_server.launch.py map:=~/maps/run1/run.yaml db_path:=~/maps/run1/session_copy.db
+
+
+
+gecicic tf yayını:
+ros2 run tf2_ros static_transform_publisher \
+  --frame-id zed_camera_link \
+  --child-frame-id base_link \
+  --x 0 --y 0 --z 0 \
+  --roll 0 --pitch 0 --yaw 0
+nav2 rviz açma:
+ros2 launch nav2_bringup rviz_launch.py 
+
+
+
+
+-- nav2params düzenlenecek
+-- tf ağı düzgün kurulacak
+-- local planning ayarlanacak	
+
+otonom sürüş:
+ros2 launch ugv_zed2i_bringup ugv_map_server.launch.py map:=~/maps/run3/session3.yaml db_path:=~/maps/run3/session3.db
+
+ros2 run tf2_ros static_transform_publisher \
+  --frame-id zed_camera_link \
+  --child-frame-id base_link \
+  --x 0 --y 0 --z 0 \
+  --roll 0 --pitch 0 --yaw 0
+  
+ros2 launch ugv_zed2i_bringup ugv_navigation.launch.py
+ros2 launch nav2_bringup rviz_launch.py 
+
+initial pose için: panel-tool properties - 2d estimate = /rtabmap/initialpose  
+
+
+wifi açma:
+sudo systemctl start NetworkManager
+
+rqt
+
+ros2 run tf2_tools view_frames
+
+===================== harita işlemleri =====================
+
+cp -f ~/.ros/rtabmap.db ~/maps/map1.db
+rm ~/.ros/rtabmap.db 
+ls ~/maps/map1.db
+ls ~/maps/map1.pgm
+
+===================== ================ =====================
+ros2 service call /rtabmap/reset std_srvs/srv/Empty {}
+
+ros2 launch nav2_bringup rviz_launch.py
+
+ros2 run rtabmap_viz rtabmap_viz
+
+sudo dmesg | grep tty
+
+
+rtabmap-databaseViewer ~/.ros/rtabmap.db
+
+ros2 service call /rtabmap/get_map rtabmap_msgs/srv/GetMap "{global_map: true, optimized: true, graph_only: false}"
+
+sudo /opt/ros/humble/lib/mavros/install_geographiclib_datasets.sh
+	source ~/orn_ws/install/setup.bash
+
+
+
+

@@ -1,0 +1,51 @@
+running egg_info
+creating ../../build/navslam/navslam.egg-info
+writing ../../build/navslam/navslam.egg-info/PKG-INFO
+writing dependency_links to ../../build/navslam/navslam.egg-info/dependency_links.txt
+writing entry points to ../../build/navslam/navslam.egg-info/entry_points.txt
+writing requirements to ../../build/navslam/navslam.egg-info/requires.txt
+writing top-level names to ../../build/navslam/navslam.egg-info/top_level.txt
+writing manifest file '../../build/navslam/navslam.egg-info/SOURCES.txt'
+reading manifest file '../../build/navslam/navslam.egg-info/SOURCES.txt'
+writing manifest file '../../build/navslam/navslam.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/batoddy/orn_ws/build/navslam/build
+creating /home/batoddy/orn_ws/build/navslam/build/lib
+creating /home/batoddy/orn_ws/build/navslam/build/lib/navslam
+copying navslam/__init__.py -> /home/batoddy/orn_ws/build/navslam/build/lib/navslam
+copying navslam/encoder_esp32_bridge.py -> /home/batoddy/orn_ws/build/navslam/build/lib/navslam
+running install
+running install_lib
+creating /home/batoddy/orn_ws/install/navslam/lib/python3.10/site-packages/navslam
+copying /home/batoddy/orn_ws/build/navslam/build/lib/navslam/__init__.py -> /home/batoddy/orn_ws/install/navslam/lib/python3.10/site-packages/navslam
+copying /home/batoddy/orn_ws/build/navslam/build/lib/navslam/encoder_esp32_bridge.py -> /home/batoddy/orn_ws/install/navslam/lib/python3.10/site-packages/navslam
+byte-compiling /home/batoddy/orn_ws/install/navslam/lib/python3.10/site-packages/navslam/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/batoddy/orn_ws/install/navslam/lib/python3.10/site-packages/navslam/encoder_esp32_bridge.py to encoder_esp32_bridge.cpython-310.pyc
+running install_data
+creating /home/batoddy/orn_ws/install/navslam/share/ament_index
+creating /home/batoddy/orn_ws/install/navslam/share/ament_index/resource_index
+creating /home/batoddy/orn_ws/install/navslam/share/ament_index/resource_index/packages
+copying resource/navslam -> /home/batoddy/orn_ws/install/navslam/share/ament_index/resource_index/packages
+copying package.xml -> /home/batoddy/orn_ws/install/navslam/share/navslam
+creating /home/batoddy/orn_ws/install/navslam/share/navslam/launch
+copying launch/bring_up.launch.py -> /home/batoddy/orn_ws/install/navslam/share/navslam/launch
+copying launch/ekf_fusion.launch.py -> /home/batoddy/orn_ws/install/navslam/share/navslam/launch
+copying launch/rgbd_odom.launch.py -> /home/batoddy/orn_ws/install/navslam/share/navslam/launch
+copying launch/rtabmap_slam.launch.py -> /home/batoddy/orn_ws/install/navslam/share/navslam/launch
+copying launch/d456_launch.launch.py -> /home/batoddy/orn_ws/install/navslam/share/navslam/launch
+copying launch/nav2_navigation.launch.py -> /home/batoddy/orn_ws/install/navslam/share/navslam/launch
+copying launch/encoder_odom_bridge.launch.py -> /home/batoddy/orn_ws/install/navslam/share/navslam/launch
+creating /home/batoddy/orn_ws/install/navslam/share/navslam/config
+copying config/zed2i_config/zed2i_override_params.yaml -> /home/batoddy/orn_ws/install/navslam/share/navslam/config
+copying config/zed2i_config/zed2i_params.yaml -> /home/batoddy/orn_ws/install/navslam/share/navslam/config
+copying config/camera_remaps.yaml -> /home/batoddy/orn_ws/install/navslam/share/navslam/config
+copying config/ekf.yaml -> /home/batoddy/orn_ws/install/navslam/share/navslam/config
+copying config/rtabmap_slam.yaml -> /home/batoddy/orn_ws/install/navslam/share/navslam/config
+copying config/d456_params.yaml -> /home/batoddy/orn_ws/install/navslam/share/navslam/config
+copying config/nav2_params.yaml -> /home/batoddy/orn_ws/install/navslam/share/navslam/config
+running install_egg_info
+Copying ../../build/navslam/navslam.egg-info to /home/batoddy/orn_ws/install/navslam/lib/python3.10/site-packages/navslam-0.0.1-py3.10.egg-info
+running install_scripts
+Installing encoder_odom_bridge script to /home/batoddy/orn_ws/install/navslam/lib/navslam
+writing list of installed files to '/home/batoddy/orn_ws/build/navslam/install.log'

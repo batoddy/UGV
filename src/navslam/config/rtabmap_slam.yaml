@@ -1,0 +1,60 @@
+rtabmap:
+  ros__parameters:
+    # ROS arayüz paramları
+    use_sim_time: false
+    subscribe_rgbd: true
+    frame_id: "base_link"
+    map_frame_id: "map"
+    odom_frame_id: "odom"            # boş => /odom topic’i dinler
+    publish_tf: true
+    queue_size: 10
+
+    # SLAM çekirdek paramları (ihtiyaca göre)
+    RGBD/ProximityPathMaxNeighbors: "1"
+    Grid/FromDepth: "true"
+    # Ör: çalışma frekansı sınırı (0 sınırsız)
+    Rtabmap/DetectionRate: "0"
+   
+    # database_path: ~/.ros/database.db
+    Mem/IncrementalMemory: "false"
+    Mem/InitWMWithAllNodes: "true"
+    Rtabmap/StartNewMap: "false"
+
+
+    Grid/MaxObstacleHeight: "2.5"   # 2.5 m’den yüksek noktaları engel sayma
+    Grid/MinObstacleHeight: "0.15"   # 15 cm’den düşük noktaları engel sayma
+
+    Grid/FromDepth: "true"
+    Grid/CellSize: "0.05"           # 5 cm resolution
+    Grid/RangeMax: "6.0"            # 6 m’den sonrası engel sayma
+    Grid/RangeMin: "0.3"            # 30 cm’den yakını ignore et
+    Grid/ClusterRadius: "0.1"       # 10 cm içinde gruplandır
+    Grid/MinClusterSize: "5"        # 5 noktadan az ise engel sayma
+    Grid/RayTracing: "true"         # Derinlik ışın izleme ile boşlukları temizle
+
+    Grid/NormalsSegmentation: "true" # true yaparsan yüzey normallerine göre engel/zemin ayrımı yapar
+    Grid/MaxGroundAngle: "40"    # 40°’ye kadar eğimler zemin
+
+
+rtabmap_viz:
+  ros__parameters:
+    # ROS arayüz paramları
+    use_sim_time: false
+    subscribe_rgbd: true
+    frame_id: "base_link"
+    map_frame_id: "map"
+    odom_frame_id: "odom"            # boş => /odom topic’i dinler
+    publish_tf: true
+    queue_size: 10
+
+    # SLAM çekirdek paramları (ihtiyaca göre)
+    RGBD/ProximityPathMaxNeighbors: "1"
+    Grid/FromDepth: "true"
+    # Ör: çalışma frekansı sınırı (0 sınırsız)
+    Rtabmap/DetectionRate: "0"
+   
+    # database_path: ~/.ros/database.db
+    Mem/IncrementalMemory: "false"
+    Mem/InitWMWithAllNodes: "true"
+    Rtabmap/StartNewMap: "false"
+

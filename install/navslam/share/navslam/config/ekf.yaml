@@ -1,0 +1,93 @@
+ekf_filter_node:
+  ros__parameters:
+    # Genel
+    frequency: 30.0            # 30 da olur; 50 pürüzsüzdür
+    sensor_timeout: 0.1
+    two_d_mode: false
+    publish_tf: true
+
+    map_frame: map
+    odom_frame: odom
+    base_link_frame: base_link
+    world_frame: odom          # GPS yok; global veri yok => odom
+
+    print_diagnostics: true
+
+    # =============== Kaynak 0: Görsel odometri (RTAB-Map) ===============
+    # Poz bilgisine en çok güvendiğimiz kaynak (x, y, yaw)
+    odom0: /rtabmap/odom
+    odom0_differential: false
+    odom0_relative: false
+    odom0_queue_size: 20
+    odom0_nodelay: false
+    odom0_pose_rejection_threshold: 5.0
+    odom0_twist_rejection_threshold: 1.0
+
+    # (x, y, z, roll, pitch, yaw, vx, vy, vz, vroll, vpitch, vyaw)
+    # Planar: z/roll/pitch kapalı; twist'i RTAB-Map'ten almak şart değil
+    odom0_config: [true,  true,  false,
+                   false, false, true,
+                   false, false, false,
+                   false, false, false]
+
+    # =============== Kaynak 1: Teker odomu (encoder) ===============
+    # Sadece twist (vx, wz) — paletli araçta kayma olacaktır; vy kapalı
+    # odom1: /wheel/odom
+    # odom1_differential: false   # Mesaj zaten odom (poz+twist); differential istemiyoruz
+    # odom1_relative: false
+    # odom1_queue_size: 20
+    # odom1_nodelay: true
+ 
+    # # Pose kapalı; vx ve yaw rate açık
+    # odom1_config: [false, false, false,
+    #                 false, false, false,
+    #                 true,  false, false,
+    #                 false, false, true]
+
+    # =============== Kaynak 2: IMU (RealSense/ZED) ===============
+    # Orientation'ı güvenmezsek false; gyro+accel açık
+    # imu0: /camera/imu           # sizde gerçekte /camera/camera/imu değil; çoğu kurulumda /camera/imu
+    # imu0_differential: false
+    # imu0_relative: false
+    # imu0_queue_size: 50
+    # imu0_nodelay: true
+    # imu0_remove_gravitational_acceleration: true
+# 
+    # # (x, y, z, roll, pitch, yaw, vx, vy, vz, vroll, vpitch, vyaw, ax, ay, az)
+    # imu0_config: [false, false, false,
+    #               false, false, false,
+    #               false, false, false,
+    #               true,  true,  true,
+    #               true,  true,  true]
+
+    # =============== Kaynak 3: IMU (Pixhawk) ===============
+    # Orientation'ı güvenmezsek false; gyro+accel açık
+    # imu0: /pixhawk/imu         # sizde gerçekte /camera/camera/imu değil; çoğu kurulumda /camera/imu
+    # imu0_differential: false
+    # imu0_relative: false
+    # imu0_queue_size: 50
+    # imu0_nodelay: true
+    # imu0_remove_gravitational_acceleration: true
+# 
+    # # (x, y, z, roll, pitch, yaw, vx, vy, vz, vroll, vpitch, vyaw, ax, ay, az)
+    # imu0_config: [false, false, false,
+    #               false, false, false,
+    #               false, false, false,
+    #               true,  true,  true,
+    #               true,  true,  true]
+
+#     # =============== (İsteğe bağlı) Kovaryans ayarları ===============
+#     # Paletli araçta teker odomu kayma yapar; güveni azaltmak için twist kovaryansını yükselt.
+#     # Aşağıdakiler sadece örnek; kendi sistemine göre ince ayar yap.
+#     process_noise_covariance: [  # 15x15, satır-satır (yalnızca fikir vermek için kısaltılmış)
+#       1e-4, 0,    0,    0,    0,    0,
+#       0,    1e-4, 0,    0,    0,    0,
+#       0,    0,    1e6,  0,    0,    0,     # z çok büyük (two_d_mode var ama yine de)
+#       0,    0,    0,    1e6,  0,    0,
+#       0,    0,    0,    0,    1e6,  0,
+#       0,    0,    0,    0,    0,    1e-3,  # yaw süreci biraz serbest
+#       # ... kalan terimler ...
+#     ]
+# 
+#     # Ölçüm kovaryansları için yayımlayan düğümlerin (RTAB-Map, wheel odom, IMU) kendi covariance’larını
+#     # doğru doldurması idealdir. Değilse robot_localization default kullanır.

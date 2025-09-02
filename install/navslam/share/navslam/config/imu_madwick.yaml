@@ -1,0 +1,10 @@
+imu_filter_madgwick_node:
+  ros__parameters:
+    use_mag: false           # D435i/D455/D456'da manyetometre yok
+    world_frame: "enu"       # Nav2/RTAB-Map ile uyumlu: X-doğu, Y-kuzey, Z-yukarı
+    publish_tf: false        # Genelde TF yayınlamasına gerek yok
+    gain: 0.1                # Filtre kazancı (0.02–0.3 arası deneyebilirsin)
+    zeta: 0.0                # Gyro drift kompanzasyonu (mag yoksa 0 önerilir)
+    orientation_stddev: 0.05 # (ops) orientation kovaryansı için ipucu
+    angular_velocity_stddev: 0.02
+    linear_acceleration_stddev: 0.1

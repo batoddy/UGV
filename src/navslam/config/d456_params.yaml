@@ -1,0 +1,42 @@
+# camera_name: "camera"
+device_type: d456
+
+# Sensörleri aç/kapat
+unite_imu_method: 2
+
+enable_color: true
+enable_depth: true
+enable_infra1: false
+enable_infra2: false
+enable_gyro: true
+enable_accel: true
+enable_sync: true
+
+# RGB ayarları
+rgb_camera.color_profile: 1280x720x30
+rgb_camera.color_format: RGB8
+
+# Depth ayarları
+depth_module.depth_profile: 1280x720x30
+
+# PointCloud ayarları
+pointcloud__neon_:
+  enable: true
+  ordered_pc: false              # opsiyonel: false = organized olmayan PC
+  allow_no_texture_points: true  # renkli olmayan noktaları da üret
+  frames_queue_size: 16
+  filter_magnitude: 2
+
+# Sync / alignment
+align_depth.enable: true
+exit_on_failure: false
+
+# Frame isimleri
+base_frame_id: "camera_link"
+imu_frame_id: "camera_imu_optical_frame"
+depth_frame_id: "camera_depth_frame"
+color_frame_id: "camera_color_frame"
+
+# QoS
+initial_reset: false
+publish_tf: true

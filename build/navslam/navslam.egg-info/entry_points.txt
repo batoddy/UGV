@@ -1,0 +1,4 @@
+[console_scripts]
+encoder_odom_bridge = navslam.encoder_esp32_bridge:main
+motor_controller_esp32 = navslam.motor_controller_esp32:main
+

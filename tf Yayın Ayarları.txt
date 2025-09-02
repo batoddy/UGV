@@ -1,0 +1,43 @@
+1) TF zinciri – kural seti
+
+Senin kurduğun mimaride tek doğru zincir şu olmalı:
+
+robot_localization (ekf_node)
+
+✅ publish_tf: true
+
+✅ YAYIN: odom → base_link
+
+Girdi: /visual_odom (rgbd_odometry), /wheel_odom (enkoder), /imu
+
+rtabmap
+
+✅ publish_tf: true
+
+✅ YAYIN: map → odom
+
+Girdi: /odom (EKF çıktısı), rgbd_image
+
+rgbd_odometry
+
+🚫 TF yayınlamaz, sadece /visual_odom topic’i üretir.
+
+wheel odom kaynağın (enkoder node’u)
+
+🚫 TF yayınlamasın (genelde paramı vardır → publish_tf: false).
+
+Çünkü /odom TF’ini sadece EKF yayınlayacak.
+
+robot_state_publisher (URDF varsa)
+
+✅ Statik/kinematik TF’ler: base_link ↔ camera_link (ve diğer linkler).
+
+Bunu URDF ile vermen ideal. URDF yoksa ZED’in statik TF’lerini kullanabilirsin (aşağıda not).
+
+Özet:
+
+map→odom: RTAB-Map
+
+odom→base_link: EKF
+
+base_link↔camera_*: robot_state_publisher (URDF) veya ZED (statik TF)

@@ -1,0 +1,29 @@
+[0.775s] Invoking command in '/home/batoddy/orn_ws/src/navslam': PYTHONPATH=/home/batoddy/orn_ws/build/navslam/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/batoddy/orn_ws/install/navslam/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/navslam build --build-base /home/batoddy/orn_ws/build/navslam/build install --record /home/batoddy/orn_ws/build/navslam/install.log --single-version-externally-managed install_data
+[1.079s] running egg_info
+[1.080s] writing ../../build/navslam/navslam.egg-info/PKG-INFO
+[1.081s] writing dependency_links to ../../build/navslam/navslam.egg-info/dependency_links.txt
+[1.081s] writing entry points to ../../build/navslam/navslam.egg-info/entry_points.txt
+[1.081s] writing requirements to ../../build/navslam/navslam.egg-info/requires.txt
+[1.081s] writing top-level names to ../../build/navslam/navslam.egg-info/top_level.txt
+[1.083s] reading manifest file '../../build/navslam/navslam.egg-info/SOURCES.txt'
+[1.085s] writing manifest file '../../build/navslam/navslam.egg-info/SOURCES.txt'
+[1.086s] running build
+[1.086s] running build_py
+[1.086s] copying navslam/motor_controller_esp32.py -> /home/batoddy/orn_ws/build/navslam/build/lib/navslam
+[1.086s] copying navslam/encoder_esp32_bridge.py -> /home/batoddy/orn_ws/build/navslam/build/lib/navslam
+[1.086s] running install
+[1.086s] running install_lib
+[1.087s] copying /home/batoddy/orn_ws/build/navslam/build/lib/navslam/motor_controller_esp32.py -> /home/batoddy/orn_ws/install/navslam/lib/python3.10/site-packages/navslam
+[1.087s] copying /home/batoddy/orn_ws/build/navslam/build/lib/navslam/encoder_esp32_bridge.py -> /home/batoddy/orn_ws/install/navslam/lib/python3.10/site-packages/navslam
+[1.088s] byte-compiling /home/batoddy/orn_ws/install/navslam/lib/python3.10/site-packages/navslam/motor_controller_esp32.py to motor_controller_esp32.cpython-310.pyc
+[1.089s] byte-compiling /home/batoddy/orn_ws/install/navslam/lib/python3.10/site-packages/navslam/encoder_esp32_bridge.py to encoder_esp32_bridge.cpython-310.pyc
+[1.090s] running install_data
+[1.091s] copying config/d456_params.yaml -> /home/batoddy/orn_ws/install/navslam/share/navslam/config
+[1.091s] copying config/nav2_params.yaml -> /home/batoddy/orn_ws/install/navslam/share/navslam/config
+[1.091s] running install_egg_info
+[1.093s] removing '/home/batoddy/orn_ws/install/navslam/lib/python3.10/site-packages/navslam-0.0.1-py3.10.egg-info' (and everything under it)
+[1.094s] Copying ../../build/navslam/navslam.egg-info to /home/batoddy/orn_ws/install/navslam/lib/python3.10/site-packages/navslam-0.0.1-py3.10.egg-info
+[1.094s] running install_scripts
+[1.120s] Installing encoder_odom_bridge = navslam.encoder_esp32_bridge:mainmotor_controller script to /home/batoddy/orn_ws/install/navslam/lib/navslam
+[1.120s] writing list of installed files to '/home/batoddy/orn_ws/build/navslam/install.log'
+[1.156s] Invoked command in '/home/batoddy/orn_ws/src/navslam' returned '0': PYTHONPATH=/home/batoddy/orn_ws/build/navslam/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/batoddy/orn_ws/install/navslam/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/navslam build --build-base /home/batoddy/orn_ws/build/navslam/build install --record /home/batoddy/orn_ws/build/navslam/install.log --single-version-externally-managed install_data

@@ -1,0 +1,14 @@
+Kamera RGB  ─┐
+Kamera Depth ├─> rgbd_sync  ──────────────┐
+CameraInfo ──┘                            │
+                                           └─> rgbd_odometry  ──>  /visual_odom (nav_msgs/Odometry)
+IMU  ──────────────────────────────────────┘               \
+                                                          (opsiyonel /imu dahil)
+
+Enkoder (wheel) ──> /wheel_odom (nav_msgs/Odometry)
+IMU ─────────────> /imu (sensor_msgs/Imu)
+
+ /visual_odom + /wheel_odom + /imu  ──>  robot_localization (ekf_node)  ──>  /odom  & TF odom→base_link
+
+ rgbd_sync (rgbd_image)  ───────────────────────────────────────────────>  rtabmap  ──> TF map→odom, /grid_map, ...
+                                  /odom (EKF’den)  ──────────────────────┘

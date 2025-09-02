@@ -1,0 +1,29 @@
+general:
+  camera_model: "zed2i"       # Launch'ta "zed2" geçiyor, senin dosyan "zed2i"
+  base_frame: "base_link"
+
+video:
+  resolution: "HD720"         # Orin Nano için iyi başlangıç
+  fps: 30
+  gpu_id: -1                  # GPU ID buradan da kontrol edilebilir
+
+depth:
+  depth_mode: "NEURAL"        # Karanlık/doku zayıf ise "NEURAL" iyi olur
+  min_depth: 0.3
+  max_depth: 10.0
+  quality: 3                  # 0-3 (yüksek kalite = daha stabil derinlik)
+  sensing_mode: "FILL"        # boşluk doldurma
+  confidence_threshold: 50
+  textureness_confidence_threshold: 50
+
+pos_tracking:
+  imu_fusion: true            # IMU füzyonu (VIO)
+  two_d_mode: false
+  pos_tracking_enabled: false
+  publish_tf: false           # Launch parametresinden
+  publish_map_tf: false       # Launch parametresinden
+  area_memory: false
+  area_memory_db_path: ""
+
+qos:
+  reliability: "RELIABLE"

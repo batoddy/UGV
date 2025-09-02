@@ -1,0 +1,4 @@
+pos_tracking:
+  pos_tracking_enabled: false
+  area_memory: false
+  area_memory_db_path: ""
