@@ -1,47 +1,76 @@
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
-from launch.substitutions import LaunchConfiguration
+from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
+from launch_ros.substitutions import FindPackageShare
 
 def generate_launch_description():
-    fcu = DeclareLaunchArgument(
-        'fcu_url', 
-        default_value='serial:///dev/ttyACM0:115200'
+    # Launch argümanları
+    fcu_url = DeclareLaunchArgument('fcu_url', default_value='/dev/ttyACM0:57600')
+    gcs_url = DeclareLaunchArgument('gcs_url', default_value='')
+    tgt_system = DeclareLaunchArgument('tgt_system', default_value='1')
+    tgt_component = DeclareLaunchArgument('tgt_component', default_value='1')
+    pluginlists_yaml = DeclareLaunchArgument(
+        'pluginlists_yaml',
+        default_value=PathJoinSubstitution([
+            FindPackageShare('mavros'),
+            'launch',
+            'px4_pluginlists.yaml'
+        ])
     )
-    gcs = DeclareLaunchArgument(
-        'gcs_url',  
-        default_value=''
+    config_yaml = DeclareLaunchArgument(
+        'config_yaml',
+        default_value=PathJoinSubstitution([
+            FindPackageShare('mavros'),
+            'launch',
+            'px4_config.yaml'
+        ])
     )
-    tgt = DeclareLaunchArgument(
-        'tgt_system', 
-        default_value='1'
-    )
-    comp = DeclareLaunchArgument(
-        'tgt_component', 
-        default_value='1'
+    log_output = DeclareLaunchArgument('log_output', default_value='screen')
+    fcu_protocol = DeclareLaunchArgument('fcu_protocol', default_value='v2.0')
+    respawn_mavros = DeclareLaunchArgument('respawn_mavros', default_value='false')
+    namespace = DeclareLaunchArgument('namespace', default_value='mavros')
+
+    # MAVROS node
+    mavros_node = Node(
+        package='mavros',
+        executable='mavros_node',
+        namespace=LaunchConfiguration('namespace'),
+        output=LaunchConfiguration('log_output'),
+        parameters=[
+            {'fcu_url': LaunchConfiguration('fcu_url')},
+            {'gcs_url': LaunchConfiguration('gcs_url')},
+            {'target_system_id': LaunchConfiguration('tgt_system')},
+            {'target_component_id': LaunchConfiguration('tgt_component')},
+            {'fcu_protocol': LaunchConfiguration('fcu_protocol')},
+            PathJoinSubstitution([
+                FindPackageShare('mavros'),
+                'launch',
+                'px4_pluginlists.yaml'
+            ]),
+            PathJoinSubstitution([
+                FindPackageShare('mavros'),
+                'launch',
+                'px4_config.yaml'
+            ])
+        ]
     )
 
     return LaunchDescription([
-        fcu, 
-        gcs, 
-        tgt, 
-        comp,
-        Node(
-            package='mavros',
-            executable='mavros_node',
-            name='mavros',
-            output='screen',
-            parameters=[{
-                'fcu_url': LaunchConfiguration('fcu_url'),
-                'gcs_url': LaunchConfiguration('gcs_url'),
-                'system_id': 1,
-                'component_id': 1,
-                'target_system_id': LaunchConfiguration('tgt_system'),
-                'target_component_id': LaunchConfiguration('tgt_component'),
-                'plugin_blacklist': [''],
-            }]
-        )
+        fcu_url,
+        gcs_url,
+        tgt_system,
+        tgt_component,
+        pluginlists_yaml,
+        config_yaml,
+        log_output,
+        fcu_protocol,
+        respawn_mavros,
+        namespace,
+        mavros_node
     ])
+
+
 
 
 """ # IMU
